@@ -16,6 +16,7 @@ phases:
       - echo pre build started on `date`
       - npm install
       - npm test
+      - npm run e2e
       - npm run build
       - echo build completed on `date`
   build:
