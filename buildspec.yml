@@ -7,9 +7,9 @@ env:
 phases:
   install:
     commands:
-      - sudo apt-get install libxss1 libappindicator1 libindicator7
+      - apt-get install libxss1 libappindicator1 libindicator7
       - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - sudo dpkg -i google-chrome*.deb
+      - dpkg -i google-chrome*.deb
       - echo test build started on `date`
       - echo installing npm 4.6.0
       - npm install -g npm@4.6.0
