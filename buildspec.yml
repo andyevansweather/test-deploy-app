@@ -1,0 +1,49 @@
+version: 0.2
+
+env:
+  variables:
+    sonarProjectName: "test-deploy-app"
+
+phases:
+  install:
+    commands:
+      - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+      - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+      - sudo apt-get update 
+      - sudo apt-get install google-chrome-stable
+      - echo test build started on `date`
+      - echo installing npm 4.6.0
+      - npm install -g npm@4.6.0
+      - echo create npmrc file
+      - printf "registry=$npmRegistryUrl\n_auth=$npmRegistryAuth\nemail=$npmRegistryEmail\nalways-auth=true" > .npmrc
+      - echo create sonar project properties file
+      - printf "sonar.projectKey=$sonarProjectKey:$sonarProjectName\n" > sonar-project.properties
+      - printf "sonar.projectName=$sonarProjectName\n" >> sonar-project.properties
+      - printf "sonar.sources=components\n" >> sonar-project.properties
+      - printf "sonar.host.url=https://sonarcloud.io\n" >> sonar-project.properties
+      - printf "sonar.login=$sonarApiKey\n" >> sonar-project.properties
+      - printf "sonar.language=js\n" >> sonar-project.properties
+      - printf "sonar.javascript.lcov.reportPaths=test/coverageReport/html/lcov.info\n" >> sonar-project.properties
+      - printf "sonar.organization=$sonarOrganisation" >> sonar-project.properties
+      - echo build completed on `date`
+  pre_build:
+    commands:
+      - echo pre build started on `date`
+      - npm install
+      - npm run build
+      - echo build completed on `date`
+  build:
+    commands:
+      - echo testing started on `date`
+      - npm run unit-test-with-coverage
+      - npm run sonar-scanner
+      - echo testing completed on `date`
+  post_build:
+    commands:
+      - echo production build started on `date`
+      - npm prune --production
+      - echo production build completed on `date`
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'build'
