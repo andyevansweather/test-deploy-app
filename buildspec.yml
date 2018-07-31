@@ -7,8 +7,9 @@ env:
 phases:
   install:
     commands:
-      - sudo apt-get update
-      - sudo apt-get --assume-yes install chromium-browser
+      - export CHROME_BIN=/usr/bin/chromium-browser
+      - apt-get update
+      - apt-get --assume-yes install chromium-browser
       - echo test build started on `date`
   pre_build:
     commands:
