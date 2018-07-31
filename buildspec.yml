@@ -9,7 +9,9 @@ phases:
     commands:
       - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
       - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-      - export CHROME_BIN=/usr/bin/chromium-browser
+      # - export CHROME_BIN=/usr/bin/chromium-browser
+      - ls /usr/bin
+      - export CHROME_BIN=/usr/bin/google-chrome
       - apt-get update
       # - apt-get --assume-yes install chromium-browser
       - apt-get install google-chrome-stable
