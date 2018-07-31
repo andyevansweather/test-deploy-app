@@ -11,8 +11,7 @@ phases:
       - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
       # - export CHROME_BIN=/usr/bin/chromium-browser
       - export CHROME_BIN=/usr/bin/google-chrome
-      - ls /usr/bin
-      - which google-chrome
+      # - ls /usr/bin
       - apt-get update
       # - apt-get --assume-yes install chromium-browser
       - apt-get --assume-yes install google-chrome-stable
