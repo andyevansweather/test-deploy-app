@@ -25,13 +25,17 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['Chrome'],
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
-      }
-    },
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+            '--headless',
+            '--disable-gpu',
+            '--remote-debugging-port=9222',
+            '--no-sandbox',
+        ],
+     },
     singleRun: true
   });
 };
