@@ -7,10 +7,8 @@ env:
 phases:
   install:
     commands:
-      - apt-get update
-      - apt-get install -y libappindicator1 fonts-liberation
-      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - dpkg -i google-chrome*.deb
+      - sudo apt-get update
+      - sudo apt-get --assume-yes install chromium-browser
       - echo test build started on `date`
       - echo installing npm 4.6.0
       - npm install -g npm@4.6.0
