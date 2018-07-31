@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test --browsers ChromeHeadless",
     "lint": "ng lint",
-    "e2e": "./node_modules/.bin/webdriver-manager update --versions.chrome=2.20 --ignore_ssl && ng e2e"
+    "e2e": "./node_modules/.bin/webdriver-manager update --ignore_ssl && ng e2e"
   },
   "private": true,
   "dependencies": {
