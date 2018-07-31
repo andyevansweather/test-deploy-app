@@ -7,10 +7,9 @@ env:
 phases:
   install:
     commands:
-      - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-      - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-      - sudo apt-get update 
-      - sudo apt-get install google-chrome-stable
+      - sudo apt-get install libxss1 libappindicator1 libindicator7
+      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - sudo dpkg -i google-chrome*.deb
       - echo test build started on `date`
       - echo installing npm 4.6.0
       - npm install -g npm@4.6.0
